@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container mt-5 p-4 shadow-lg rounded bg-light" style="max-width: 400px;">
+  <h2 class="text-center mb-4">Login</h2>
+  
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter your email">
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger mt-1">
+      Invalid email
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input id="password" type="password" formControlName="password" class="form-control" placeholder="Enter your password">
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger mt-1">
+      Password must be at least 6 characters
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary w-100">Login</button>
+</form>
+
+<link href="styles.css" rel="stylesheet">
