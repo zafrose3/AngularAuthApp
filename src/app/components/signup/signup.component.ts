@@ -24,11 +24,10 @@ export class SignupComponent {
     console.log("Signup form submitted!", this.signupForm.value);
 
     if (this.signupForm.valid) {
-      // Save user data (this is just a simulation)
       localStorage.setItem('user', JSON.stringify(this.signupForm.value));
 
       alert("Signup successful! You can now log in.");
-      this.router.navigate(['/login']); // Redirect to login page
+      this.router.navigate(['/login']); 
     } else {
       alert("Please fill in all fields correctly.");
     }

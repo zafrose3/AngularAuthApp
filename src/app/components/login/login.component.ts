@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';  // ✅ Import Router
-import { HttpClient } from '@angular/common/http';  // ✅ Import HttpClient
-
+import { Router } from '@angular/router';  
+import { HttpClient } from '@angular/common/http';  
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +10,7 @@ import { HttpClient } from '@angular/common/http';  // ✅ Import HttpClient
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private http: HttpClient, private router: Router) {  // ✅ Inject dependencies
+  constructor(private http: HttpClient, private router: Router) { 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -23,11 +22,7 @@ export class LoginComponent {
       this.http.post('http://localhost:5000/login', this.loginForm.value).subscribe(
         (response: any) => {
           console.log('Login successful', response);
-          
-          // Store user details in sessionStorage
           sessionStorage.setItem('user', JSON.stringify(response.user));
-
-          // Redirect to dashboard
           this.router.navigate(['/dashboard']);
         },
         (error) => {
